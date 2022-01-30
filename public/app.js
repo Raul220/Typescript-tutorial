@@ -1,3 +1,17 @@
+const me = {
+    name: 'Luke Skywlaker',
+    age: 23,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log(`I spend ${amount}`);
+        return amount;
+    }
+};
+let person;
+const greet_person = (person) => console.log(person.name);
+greet_person(me);
 import { Invoice } from './classes/Invoice.js';
 const invOne = new Invoice('Chubaka', 'Work on the Web Site', 20);
 const invTwo = new Invoice('Han Solo', 'Lickin princes pussy', 250);
