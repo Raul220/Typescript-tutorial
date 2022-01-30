@@ -1,9 +1,28 @@
-// const anchor = document.querySelector('a')!; // ! at the end of the sentence means the i know that it could be a null value
+//clases
+class Invoice {
+    client: string;
+    details: string;
+    amount: number;
 
-// anchor && console.log(anchor.href);
-// console.log(anchor.href);
+    constructor(client: string, details: string, amount: number) {
+        this.client = client;
+        this.details = details;
+        this.amount = amount;
+    }
 
-// const form = document.querySelector('form')!; //when is selected by form or a, etc, ts knows the is HTMLFormElement || HTMLAnchorElement, etc
+    format(){
+        return `${this.client} owes £${this.amount} for ${this.details}.`;
+    }
+}
+
+const invOne = new Invoice('Chubaka', 'Work on the Web Site', 20);
+const invTwo = new Invoice('Han Solo', 'Lickin princes pussy', 250);
+
+let invoices: Invoice[] = [];
+invoices.push(invOne);
+invoices.push(invTwo);
+
+console.log(invoices);
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement; //Casting
 console.log(form.children);
