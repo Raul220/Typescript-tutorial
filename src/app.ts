@@ -1,56 +1,15 @@
-//interfaces
-interface IsPerson {
-  name: string;
-  age: number;
-  speak(a: string): void;
-  spend(a: number): number;
-}
-
-const me: IsPerson = {
-  name: "Luke Skywlaker",
-  age: 23,
-  speak(text: string) {
-    console.log(text);
-  },
-  spend(amount: number) {
-    console.log(`I spend ${amount}`);
-    return amount;
-  },
-};
-
-let person: IsPerson;
-
-const greet_person = (person: IsPerson) => console.log(person.name);
-
-greet_person(me);
-
 import { Invoice } from "./classes/Invoice.js";
 import { Payment } from "./classes/Payment.js";
+import { ListTemplate } from "./classes/ListTemplates.js";
 import { HasFormatter } from "./interfaces/HasFormatter.js";
 
-// let docOne: HasFormatter;
-// let docTwo: HasFormatter;
-
-// docOne = new Invoice("Luke", "Socking under the Bridge", 50);
-// docTwo = new Payment("Yoda", "Let Luke Socking under the Bridge", 1550);
-
-// let docs: HasFormatter[] = [];
-// docs.push(docOne);
-// docs.push(docTwo);
-
-// console.log(docs);
-
-// const invOne = new Invoice("Chubaka", "Work on the Web Site", 20);
-// const invTwo = new Invoice("Han Solo", "Lickin princes pussy", 250);
-
-// let invoices: Invoice[] = [];
-// invoices.push(invOne);
-// invoices.push(invTwo);
-
-// console.log(invoices);
-
 const form = document.querySelector(".new-item-form") as HTMLFormElement; //Casting
-console.log(form.children);
+
+/* 
+list template instance
+*/
+const ul = document.querySelector('ul')!;
+const list = new ListTemplate(ul);
 
 //inputs
 const type = document.querySelector("#type") as HTMLSelectElement;
@@ -67,5 +26,5 @@ form.addEventListener("submit", (e: Event) => {
       ? new Invoice(tofrom.value, details.value, amount.valueAsNumber)
       : new Payment(tofrom.value, details.value, amount.valueAsNumber);
 
-  console.log(doc);
+  list.render(doc, type.value, 'end');
 });

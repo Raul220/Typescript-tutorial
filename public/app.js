@@ -1,35 +1,12 @@
-const me = {
-    name: "Luke Skywlaker",
-    age: 23,
-    speak(text) {
-        console.log(text);
-    },
-    spend(amount) {
-        console.log(`I spend ${amount}`);
-        return amount;
-    },
-};
-let person;
-const greet_person = (person) => console.log(person.name);
-greet_person(me);
 import { Invoice } from "./classes/Invoice.js";
 import { Payment } from "./classes/Payment.js";
-// let docOne: HasFormatter;
-// let docTwo: HasFormatter;
-// docOne = new Invoice("Luke", "Socking under the Bridge", 50);
-// docTwo = new Payment("Yoda", "Let Luke Socking under the Bridge", 1550);
-// let docs: HasFormatter[] = [];
-// docs.push(docOne);
-// docs.push(docTwo);
-// console.log(docs);
-// const invOne = new Invoice("Chubaka", "Work on the Web Site", 20);
-// const invTwo = new Invoice("Han Solo", "Lickin princes pussy", 250);
-// let invoices: Invoice[] = [];
-// invoices.push(invOne);
-// invoices.push(invTwo);
-// console.log(invoices);
+import { ListTemplate } from "./classes/ListTemplates.js";
 const form = document.querySelector(".new-item-form"); //Casting
-console.log(form.children);
+/*
+list template instance
+*/
+const ul = document.querySelector('ul');
+const list = new ListTemplate(ul);
 //inputs
 const type = document.querySelector("#type");
 const tofrom = document.querySelector("#tofrom");
@@ -42,5 +19,5 @@ form.addEventListener("submit", (e) => {
         type.value === "invoice"
             ? new Invoice(tofrom.value, details.value, amount.valueAsNumber)
             : new Payment(tofrom.value, details.value, amount.valueAsNumber);
-    console.log(doc);
+    list.render(doc, type.value, 'end');
 });
