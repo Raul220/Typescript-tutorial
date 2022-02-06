@@ -8,7 +8,7 @@ const form = document.querySelector(".new-item-form") as HTMLFormElement; //Cast
 /* 
 list template instance
 */
-const ul = document.querySelector('ul')!;
+const ul = document.querySelector("ul")!;
 const list = new ListTemplate(ul);
 
 //inputs
@@ -26,5 +26,58 @@ form.addEventListener("submit", (e: Event) => {
       ? new Invoice(tofrom.value, details.value, amount.valueAsNumber)
       : new Payment(tofrom.value, details.value, amount.valueAsNumber);
 
-  list.render(doc, type.value, 'end');
+  list.render(doc, type.value, "end");
 });
+
+//GENERICS
+
+// const addUID = (obj: object) => {
+//   let uid = Math.floor(Math.random()*100)
+//   return {obj, uid};
+// }
+/* If Trait to get docOne.name or any atribute will get error 
+it doesn't recgnize attributes, so we can replace <T>(obj: T)
+It cath what ever we pass to the function*/
+
+// const addUID = <T>(obj: T) => {
+//   let uid = Math.floor(Math.random()*100)
+//   return {...obj, uid};
+// }
+
+// let docOne = addUID({ name: 'Luke', age: 70});
+
+// console.log(docOne);
+// console.log(docOne.name);
+
+/* We can pass anything to the function include a string or etc */
+// let docTwo = addUID('Hello')
+// console.log(docTwo);
+
+/* So we can extends from objrct <T extends object> */
+
+const addUID = <T extends object>(obj: T) => {
+  //The extends can be an obj with specific attr type <T extends { name: string }>
+  let uid = Math.floor(Math.random() * 100);
+  return { ...obj, uid };
+};
+// let docTwo = addUID('Hello') Then we get an error because the function is waithing an object
+let docThree = addUID({ name: "Han Solo", age: 76 });
+console.log(`${docThree.name} has ${docThree.age} years old.`);
+
+//GENERICS WHIT INTERFACES
+interface Resource <T> {
+  uid: number;
+  resource_name: string;
+  data: T;  //data is gonna be what ever we pass in this field
+}
+const docFour: Resource<object> = { // in <type of T parameter>
+  uid: 1,
+  resource_name: 'Batimovil',
+  data: { name: 'Bruce' }
+};
+}
+const docFive: Resource<string[]> = {
+  uid: 2,
+  resource_name: 'Shootgun',
+  data: ['1', '2', '3']
+}
