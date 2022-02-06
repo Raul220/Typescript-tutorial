@@ -75,7 +75,6 @@ const docFour: Resource<object> = { // in <type of T parameter>
   resource_name: 'Batimovil',
   data: { name: 'Bruce' }
 };
-}
 const docFive: Resource<string[]> = {
   uid: 2,
   resource_name: 'Shootgun',
