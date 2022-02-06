@@ -19,12 +19,21 @@ const amount = document.querySelector("#amount") as HTMLInputElement;
 
 form.addEventListener("submit", (e: Event) => {
   e.preventDefault();
+/* Using tuples */
+  let values: [string, string, number];
+  values = [tofrom.value, details.value, amount.valueAsNumber]
 
   let doc: HasFormatter;
   doc =
     type.value === "invoice"
-      ? new Invoice(tofrom.value, details.value, amount.valueAsNumber)
-      : new Payment(tofrom.value, details.value, amount.valueAsNumber);
+      ? new Invoice(...values)
+      : new Payment(...values);
 
   list.render(doc, type.value, 'end');
 });
+
+//TUPLES
+
+let tup: [string, number, boolean] = ['Joshua', 25, true]; // types are defined by position
+// let student: [string, number];
+// student = ['Juan', 12545];

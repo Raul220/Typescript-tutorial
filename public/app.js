@@ -14,10 +14,17 @@ const details = document.querySelector("#details");
 const amount = document.querySelector("#amount");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    /* Using tuples */
+    let values;
+    values = [tofrom.value, details.value, amount.valueAsNumber];
     let doc;
     doc =
         type.value === "invoice"
-            ? new Invoice(tofrom.value, details.value, amount.valueAsNumber)
-            : new Payment(tofrom.value, details.value, amount.valueAsNumber);
+            ? new Invoice(...values)
+            : new Payment(...values);
     list.render(doc, type.value, 'end');
 });
+//TUPLES
+let tup = ['Joshua', 25, true]; // types are defined by position
+// let student: [string, number];
+// student = ['Juan', 12545];
