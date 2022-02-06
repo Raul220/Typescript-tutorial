@@ -21,3 +21,24 @@ form.addEventListener("submit", (e) => {
             : new Payment(tofrom.value, details.value, amount.valueAsNumber);
     list.render(doc, type.value, 'end');
 });
+//ENUMS
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+;
+const docSix = {
+    uid: 1,
+    resource_type: ResourceType.BOOK,
+    data: { name: 'Song of Ice & Fire' }
+};
+const docSeven = {
+    uid: 10,
+    resource_type: ResourceType.FILM,
+    data: { name: 'Silence of the Lambs' }
+};
+console.log(docSix, docSeven);
